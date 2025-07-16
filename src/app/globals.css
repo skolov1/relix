@@ -3,31 +3,187 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+@layer base {
+    :root {
+        --background: 0 0% 97.6471%;
+        --foreground: 0 0% 20%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 20%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 20%;
+        --primary: 246.9065 74.3316% 63.3333%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 210.3704 75.7009% 79.0196%;
+        --secondary-foreground: 0 0% 20%;
+        --muted: 45 15.625% 74.902%;
+        --muted-foreground: 0 0% 43.1373%;
+        --accent: 72 17.9283% 49.2157%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 84.2365% 60.1961%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 0 0% 83.1373%;
+        --input: 0 0% 83.1373%;
+        --ring: 246.9065 74.3316% 63.3333%;
+        --chart-1: 246.9065 74.3316% 63.3333%;
+        --chart-2: 282.2857 43.5685% 47.2549%;
+        --chart-3: 274.6154 100% 25.4902%;
+        --chart-4: 218.5401 79.1908% 66.0784%;
+        --chart-5: 207.2727 44% 49.0196%;
+        --sidebar: 0 0% 97.6471%;
+        --sidebar-foreground: 0 0% 20%;
+        --sidebar-primary: 246.9065 74.3316% 63.3333%;
+        --sidebar-primary-foreground: 0 0% 100%;
+        --sidebar-accent: 72 17.9283% 49.2157%;
+        --sidebar-accent-foreground: 0 0% 100%;
+        --sidebar-border: 0 0% 83.1373%;
+        --sidebar-ring: 246.9065 74.3316% 63.3333%;
+        --font-sans: Montserrat, sans-serif;
+        --font-serif: Playfair Display, serif;
+        --font-mono: Source Code Pro, monospace;
+        --radius: 0.5rem;
+        --shadow-2xs: 0px 5px 10px -2px hsl(0 0% 0% / 0.05);
+        --shadow-xs: 0px 5px 10px -2px hsl(0 0% 0% / 0.05);
+        --shadow-sm:
+            0px 5px 10px -2px hsl(0 0% 0% / 0.1),
+            0px 1px 2px -3px hsl(0 0% 0% / 0.1);
+        --shadow:
+            0px 5px 10px -2px hsl(0 0% 0% / 0.1),
+            0px 1px 2px -3px hsl(0 0% 0% / 0.1);
+        --shadow-md:
+            0px 5px 10px -2px hsl(0 0% 0% / 0.1),
+            0px 2px 4px -3px hsl(0 0% 0% / 0.1);
+        --shadow-lg:
+            0px 5px 10px -2px hsl(0 0% 0% / 0.1),
+            0px 4px 6px -3px hsl(0 0% 0% / 0.1);
+        --shadow-xl:
+            0px 5px 10px -2px hsl(0 0% 0% / 0.1),
+            0px 8px 10px -3px hsl(0 0% 0% / 0.1);
+        --shadow-2xl: 0px 5px 10px -2px hsl(0 0% 0% / 0.25);
+    }
+
+    .dark {
+        --background: 0 0.7541% 2.9608%;
+        --foreground: 0 0% 89.8039%;
+        --card: 197.1429 6.9307% 19.8039%;
+        --card-foreground: 0 0% 89.8039%;
+        --popover: 197.1429 6.9307% 19.8039%;
+        --popover-foreground: 0 0% 89.8039%;
+        --primary: 217.2193 91.2195% 59.8039%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 217.2193 91.2195% 59.8039%;
+        --secondary-foreground: 0 0% 89.8039%;
+        --muted: 0 0% 26.6667%;
+        --muted-foreground: 0 0% 63.9216%;
+        --accent: 229.6403 58.159% 46.8627%;
+        --accent-foreground: 0 0% 89.8039%;
+        --destructive: 0 84.2365% 60.1961%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 0 0% 26.6667%;
+        --input: 0 0% 26.6667%;
+        --ring: 246.9065 74.3316% 63.3333%;
+        --chart-1: 246.9065 74.3316% 63.3333%;
+        --chart-2: 282.2857 43.5685% 47.2549%;
+        --chart-3: 274.6154 100% 25.4902%;
+        --chart-4: 218.5401 79.1908% 66.0784%;
+        --chart-5: 207.2727 44% 49.0196%;
+        --sidebar: 220 14.7541% 11.9608%;
+        --sidebar-foreground: 0 0% 89.8039%;
+        --sidebar-primary: 246.9065 74.3316% 63.3333%;
+        --sidebar-primary-foreground: 0 0% 100%;
+        --sidebar-accent: 218.5401 79.1908% 66.0784%;
+        --sidebar-accent-foreground: 0 0% 89.8039%;
+        --sidebar-border: 0 0% 26.6667%;
+        --sidebar-ring: 246.9065 74.3316% 63.3333%;
+        --font-sans: Montserrat, sans-serif;
+        --font-serif: Playfair Display, serif;
+        --font-mono: Source Code Pro, monospace;
+        --radius: 0.5rem;
+        --shadow-2xs: 0px 5px 10px -2px hsl(0 0% 0% / 0.05);
+        --shadow-xs: 0px 5px 10px -2px hsl(0 0% 0% / 0.05);
+        --shadow-sm:
+            0px 5px 10px -2px hsl(0 0% 0% / 0.1),
+            0px 1px 2px -3px hsl(0 0% 0% / 0.1);
+        --shadow:
+            0px 5px 10px -2px hsl(0 0% 0% / 0.1),
+            0px 1px 2px -3px hsl(0 0% 0% / 0.1);
+        --shadow-md:
+            0px 5px 10px -2px hsl(0 0% 0% / 0.1),
+            0px 2px 4px -3px hsl(0 0% 0% / 0.1);
+        --shadow-lg:
+            0px 5px 10px -2px hsl(0 0% 0% / 0.1),
+            0px 4px 6px -3px hsl(0 0% 0% / 0.1);
+        --shadow-xl:
+            0px 5px 10px -2px hsl(0 0% 0% / 0.1),
+            0px 8px 10px -3px hsl(0 0% 0% / 0.1);
+        --shadow-2xl: 0px 5px 10px -2px hsl(0 0% 0% / 0.25);
+    }
+
+    body {
+        letter-spacing: var(--tracking-normal);
+    }
+    .theme {
+        --animate-aurora: aurora 8s ease-in-out infinite alternate;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+@theme inline {
+    @keyframes aurora {
+        0% {
+            background-position: 0% 50%;
+            transform: rotate(-5deg) scale(0.9);
+        }
+        25% {
+            background-position: 50% 100%;
+            transform: rotate(5deg) scale(1.1);
+        }
+        50% {
+            background-position: 100% 50%;
+            transform: rotate(-3deg) scale(0.95);
+        }
+        75% {
+            background-position: 50% 0%;
+            transform: rotate(3deg) scale(1.05);
+        }
+        100% {
+            background-position: 0% 50%;
+            transform: rotate(-5deg) scale(0.9);
+        }
+    }
 }

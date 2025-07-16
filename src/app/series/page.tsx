@@ -1,45 +1,41 @@
 "use client";
 
 import {
-  getPopularInBrazil,
-  getTopRatedMovies,
-  getTrendingMovies,
-  getUpcoming,
+  getPopularTvShow,
+  getTopRatedTvShows,
+  getTrendingTvShow,
 } from "@/lib/api";
-import MovieCarousel from "./ui-components/Movie-Carousel.component";
-import { MovieCard } from "./ui-components/Movie-Card.component";
 import { useEffect, useState } from "react";
-import { Movie } from "@/lib/types";
+import { TvShow } from "@/lib/types";
 import { Skeleton } from "@/components/ui/skeleton";
+import { TvShowCard } from "../ui-components/TvShowCard.component";
+import TvShowCarousel from "../ui-components/TvShowCarousel.component";
 
 export default function Home() {
-  const [popularBrazilMovies, setPopularBrazilMovies] = useState<Movie[]>([]);
-  const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
-  const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
-  const [upcomingMovies, setUpcomingMovies] = useState<Movie[]>([]);
+  const [topRatedTvShows, setTopRatedTvShow] = useState<TvShow[]>([]);
+  const [trendingTvShow, setTrendingTvShow] = useState<TvShow[]>([]);
+  const [popularTvShow, setPopularTvShow] = useState<TvShow[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchTvShows = async () => {
       try {
-        const [localMovies, topRated, trending, upcoming] = await Promise.all([
-          getPopularInBrazil(),
-          getTopRatedMovies(),
-          getTrendingMovies(),
-          getUpcoming(),
+        const [topRatedShow, trending, popular] = await Promise.all([
+          getTopRatedTvShows(),
+          getTrendingTvShow(),
+          getPopularTvShow(),
         ]);
 
-        setPopularBrazilMovies(localMovies.slice(0, 8));
-        setTopRatedMovies(topRated.slice(0, 8));
-        setTrendingMovies(trending.slice(0, 8));
-        setUpcomingMovies(upcoming.slice(0, 8));
+        setTrendingTvShow(trending.slice(0, 8));
+        setTopRatedTvShow(topRatedShow.slice(0, 8));
+        setPopularTvShow(popular.slice(0, 8));
       } catch (err) {
         console.error(err, "obtivemos um erro.");
       } finally {
         setIsLoading(false);
       }
     };
-    fetchMovies();
+    fetchTvShows();
   }, []);
 
   if (isLoading) {
@@ -61,7 +57,7 @@ export default function Home() {
   return (
     <main className="bg-background text-foreground pb-12">
       <div className="py-4 px-2 xl:container xl:mx-auto xl:w-full">
-        <MovieCarousel movies={trendingMovies} />
+        <TvShowCarousel tvshow={trendingTvShow} />
       </div>
       <hr className="border-zinc-800 mx-12" />
       <div className="mx-12">
@@ -71,31 +67,19 @@ export default function Home() {
           </h1>
         </div>
         <div className="grid grid-cols-3 2xl:grid-cols-4 gap-4">
-          {topRatedMovies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-        </div>
-        <hr className="border-zinc-800 mt-4" />
-
-        <div className="py-4">
-          <h1 className="text-3xl text-foreground font-bold">
-            🇧🇷 | Mais populares no Brasil
-          </h1>
-        </div>
-        <div className="grid grid-cols-3 2xl:grid-cols-4 gap-4">
-          {popularBrazilMovies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
+          {topRatedTvShows.map((tvshow) => (
+            <TvShowCard key={tvshow.id} tvshow={tvshow} />
           ))}
         </div>
         <hr className="border-zinc-800 mt-4" />
         <div className="py-4">
           <h1 className="text-3xl text-foreground font-bold">
-            | Filmes prestes a serem lançados
+            🇧🇷 | Mais Populares no Brasil
           </h1>
         </div>
         <div className="grid grid-cols-3 2xl:grid-cols-4 gap-4">
-          {upcomingMovies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
+          {popularTvShow.map((tvshow) => (
+            <TvShowCard key={tvshow.id} tvshow={tvshow} />
           ))}
         </div>
         <hr className="border-zinc-800 mt-4" />
