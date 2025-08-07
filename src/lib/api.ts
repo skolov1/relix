@@ -248,7 +248,36 @@ export const getTrendingTvShow = async (): Promise<TvShow[]> => {
 };
 
 export const getPopularTvShow = async (): Promise<TvShow[]> => {
-  const url = `${TMDB_BASE_URL}/tv/popular?language=pt-BR&page=1&region=br`;
+  const url = `${TMDB_BASE_URL}/tv/popular?language=pt-BR&page=1`;
+
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_READ_TOKEN}`,
+    },
+    next: {
+      revalidate: 86400,
+    },
+  };
+
+  try {
+    const res = await fetch(url, options);
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const data: TMDBTvShowResponse = await res.json();
+    return data.results || [];
+  } catch (err) {
+    console.error("Erro ao buscar filmes em alta:", err);
+    return [];
+  }
+};
+
+export const getOnAirTvShow = async (): Promise<TvShow[]> => {
+  const url = `${TMDB_BASE_URL}/tv/on_the_air?language=pt-BR&page=1`;
 
   const options = {
     method: "GET",

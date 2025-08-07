@@ -63,3 +63,12 @@ export interface TMDBTvShowResponse {
   total_pages: number;
   total_results: number;
 }
+
+export interface SearchResult {
+  id: number;
+  title: string;
+  mediaType: "movie" | "tv";
+  release_date?: string;
+  first_air_date?: string;
+  poster_path?: string;
+}
